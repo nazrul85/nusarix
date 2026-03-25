@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans text-dark bg-gray-50 antialiased;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md font-semibold text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-primary-dark focus:ring-primary;
+  }
+  .btn-secondary {
+    @apply btn bg-secondary text-white hover:opacity-90 focus:ring-secondary;
+  }
+  .btn-danger {
+    @apply btn bg-danger text-white hover:opacity-90 focus:ring-danger;
+  }
+  .btn-outline {
+    @apply btn border border-gray-300 text-dark-light hover:bg-gray-50 focus:ring-gray-300;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+  .btn-lg {
+    @apply px-6 py-3 text-base;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-vristo p-6;
+  }
+
+  .form-input {
+    @apply w-full px-3 py-2 border border-gray-300 rounded-lg text-sm text-dark focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors;
+  }
+  .form-label {
+    @apply block text-sm font-medium text-dark mb-1;
+  }
+  .form-error {
+    @apply text-xs text-danger mt-1;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-success {
+    @apply badge bg-success-light text-success;
+  }
+  .badge-danger {
+    @apply badge bg-danger-light text-danger;
+  }
+  .badge-warning {
+    @apply badge bg-warning-light text-warning;
+  }
+  .badge-info {
+    @apply badge bg-info-light text-info;
+  }
+  .badge-gray {
+    @apply badge bg-gray-100 text-gray-600;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400;
+}
