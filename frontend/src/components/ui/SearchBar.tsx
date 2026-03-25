@@ -1,5 +1,5 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface SearchBarProps {
   placeholder?: string;
@@ -9,11 +9,16 @@ interface SearchBarProps {
 
 export default function SearchBar({ placeholder = 'Search...', onSearch, debounce = 400 }: SearchBarProps) {
   const [value, setValue] = useState('');
+  const onSearchRef = useRef(onSearch);
 
   useEffect(() => {
-    const timer = setTimeout(() => onSearch(value), debounce);
+    onSearchRef.current = onSearch;
+  }, [onSearch]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => onSearchRef.current(value), debounce);
     return () => clearTimeout(timer);
-  }, [value, debounce, onSearch]);
+  }, [value, debounce]);
 
   return (
     <div className="relative">

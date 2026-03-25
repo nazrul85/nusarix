@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { AxiosError } from 'axios';
 import { PaginatedResponse } from '../types';
 
@@ -25,10 +25,16 @@ export function usePagination<T>(
     search: '',
   });
 
+  // Use a ref to hold the latest fetchFn to avoid stale closure issues
+  const fetchFnRef = useRef(fetchFn);
+  useEffect(() => {
+    fetchFnRef.current = fetchFn;
+  }, [fetchFn]);
+
   const fetchData = useCallback(async (page = 1, search = '') => {
     setState((prev) => ({ ...prev, loading: true, error: null }));
     try {
-      const response = await fetchFn({ page, search, per_page: 15 });
+      const response = await fetchFnRef.current({ page, search, per_page: 15 });
       const { data, current_page, last_page, total } = response.data.data;
       setState((prev) => ({
         ...prev,
@@ -47,7 +53,7 @@ export function usePagination<T>(
         error: error.response?.data?.message ?? 'Failed to load data',
       }));
     }
-  }, [fetchFn]);
+  }, []);
 
   useEffect(() => {
     fetchData(1, '');
