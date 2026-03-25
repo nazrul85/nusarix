@@ -24,7 +24,7 @@ class DashboardController extends Controller
             'open_tasks' => Task::where('status', 'open')->count(),
             'total_users' => User::count(),
             'revenue_opportunities' => Opportunity::where('status', 'won')->sum('value'),
-            'pipeline_value' => Opportunity::whereIn('status', ['open', 'qualified', 'proposal'])->sum('value'),
+            'pipeline_value' => Opportunity::whereIn('stage', ['prospecting', 'qualification', 'proposal', 'negotiation'])->sum('value'),
         ];
 
         return response()->json([
