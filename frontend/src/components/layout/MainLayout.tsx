@@ -13,7 +13,7 @@ export default function MainLayout() {
 
       {/* Main content */}
       <div className={`flex-1 flex flex-col min-w-0 overflow-hidden transition-all duration-300 ${sidebarOpen ? 'lg:ml-0' : ''}`}>
-        <Header onMenuToggle={() => setSidebarOpen(!sidebarOpen)} sidebarOpen={sidebarOpen} />
+        <Header onMenuToggle={() => setSidebarOpen(!sidebarOpen)} />
 
         <main className="flex-1 overflow-y-auto p-6">
           <Outlet />

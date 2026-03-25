@@ -7,7 +7,6 @@ import toast from 'react-hot-toast';
 
 interface HeaderProps {
   onMenuToggle: () => void;
-  sidebarOpen: boolean;
 }
 
 export default function Header({ onMenuToggle }: HeaderProps) {

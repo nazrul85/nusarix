@@ -5,7 +5,6 @@ import {
   ShieldCheckIcon,
   KeyIcon,
   UserGroupIcon,
-  BuildingOfficeIcon,
   FunnelIcon,
   CurrencyDollarIcon,
   ClipboardDocumentListIcon,
@@ -64,9 +63,6 @@ const navGroups: NavGroup[] = [
     ],
   },
 ];
-
-// BuildingOfficeIcon is available for future use (companies section)
-void BuildingOfficeIcon;
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { user, logout, hasRole } = useAuthStore();

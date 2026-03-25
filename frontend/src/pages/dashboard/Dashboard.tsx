@@ -19,6 +19,8 @@ const activityIcons: Record<string, string> = {
   task: '✅',
 };
 
+const currencyFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+
 export default function Dashboard() {
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -42,8 +44,7 @@ export default function Dashboard() {
     fetchData();
   }, []);
 
-  const formatCurrency = (value: number) =>
-    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+  const formatCurrency = (value: number) => currencyFormatter.format(value);
 
   return (
     <div className="space-y-6">

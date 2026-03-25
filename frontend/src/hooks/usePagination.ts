@@ -25,7 +25,7 @@ export function usePagination<T>(
     search: '',
   });
 
-  const fetch = useCallback(async (page = 1, search = '') => {
+  const fetchData = useCallback(async (page = 1, search = '') => {
     setState((prev) => ({ ...prev, loading: true, error: null }));
     try {
       const response = await fetchFn({ page, search, per_page: 15 });
@@ -50,12 +50,12 @@ export function usePagination<T>(
   }, [fetchFn]);
 
   useEffect(() => {
-    fetch(1, '');
-  }, [fetch]);
+    fetchData(1, '');
+  }, [fetchData]);
 
-  const setPage = (page: number) => fetch(page, state.search);
-  const setSearch = (search: string) => fetch(1, search);
-  const refresh = () => fetch(state.currentPage, state.search);
+  const setPage = (page: number) => fetchData(page, state.search);
+  const setSearch = (search: string) => fetchData(1, search);
+  const refresh = () => fetchData(state.currentPage, state.search);
 
   return { ...state, setPage, setSearch, refresh };
 }
